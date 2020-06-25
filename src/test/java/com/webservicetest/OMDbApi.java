@@ -30,7 +30,7 @@ public class OMDbApi{
 
     @Test
     public void OmdbApi(){
-        Omdb omdb = InstanceUtils.generateInstance(Omdb.class);
+        Omdb omdb = InstanceUtils.generateInstance(Omdb.class, "test1");
 
         Search searchResponse = callRequest(omdb, Search.class);
         Movie movie = searchByTitle("Harry Potter and the Sorcerer's Stone", searchResponse);

@@ -5,32 +5,15 @@ import java.util.Properties;
 
 public class PropertyUtils {
 
-    private static PropertyUtils propUtils = new PropertyUtils();
-    private static Properties props = new Properties();
 
-    static{
+    public static Properties getInstance(String fileName){
+        Properties props = new Properties();
         try {
-            props.load(PropertyUtils.class.getClassLoader().getResourceAsStream("test1.properties"));
-        }catch (IOException ex){
-            ex.printStackTrace();
+            props.load(PropertyUtils.class.getClassLoader().getResourceAsStream(fileName+".properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return props;
     }
-
-    /*public PropertyUtils() {
-        loadProperties();
-    }*/
-
-    public static PropertyUtils getInstance(){
-
-
-        return propUtils;
-    }
-
-    public String getPropValue(String val){
-        return props.getProperty(val);
-    }
-
-
-
 
 }

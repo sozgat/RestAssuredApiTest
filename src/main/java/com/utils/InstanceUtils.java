@@ -3,19 +3,20 @@ package com.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 public class InstanceUtils {
 
-    public static  <T> T generateInstance(Class<T> clazz){
+    public static  <T> T generateInstance(Class<T> clazz, String fileName){
         T instance = null;
         try {
             instance = clazz.newInstance();
-            PropertyUtils propertyUtils = PropertyUtils.getInstance();
+            Properties props = PropertyUtils.getInstance(fileName);
             for (Field declaredField : clazz.getDeclaredFields()) {
                 String fieldName = declaredField.getName();
-                String propValue = propertyUtils.getPropValue(clazz.getSimpleName() + "." + fieldName);
+                String propValue = props.getProperty(clazz.getSimpleName() + "." + fieldName);
 
-//                Class<?> fieldType = declaredField.getType();
+//              Class<?> fieldType = declaredField.getType();
 
                 String methodName = "set" + StringUtils.capitalize(fieldName);
                 Method method2 = clazz.getDeclaredMethod(methodName, String.class);
