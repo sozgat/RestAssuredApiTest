@@ -16,8 +16,6 @@ public class InstanceUtils {
                 String fieldName = declaredField.getName();
                 String propValue = props.getProperty(clazz.getSimpleName() + "." + fieldName);
 
-//              Class<?> fieldType = declaredField.getType();
-
                 String methodName = "set" + StringUtils.capitalize(fieldName);
                 Method method2 = clazz.getDeclaredMethod(methodName, String.class);
 
